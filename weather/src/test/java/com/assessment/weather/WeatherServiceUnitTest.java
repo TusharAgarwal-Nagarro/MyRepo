@@ -1,5 +1,7 @@
 package com.assessment.weather;
 
+import static org.junit.Assert.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -11,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.util.Assert;
+import org.junit.Assert;
 
 import com.assessment.weather.data.DataRepository;
 import com.assessment.weather.dto.Result;
@@ -34,7 +36,6 @@ public class WeatherServiceUnitTest {
 	 @MockBean
 	    private DataRepository dataRepo ;
 	 
-	 @SuppressWarnings("deprecation")
 	@Test
 	 public void testGetWeatherData() throws ParseException, JsonParseException, JsonMappingException, IOException {
 		 ObjectMapper mapper = new ObjectMapper();
@@ -43,7 +44,7 @@ public class WeatherServiceUnitTest {
 		
 		List<WeatherInfo> list = weatherService.getWeatherInfo("delhi");
 		
-		Assert.isTrue(list.get(0).getHumidity()==31);
+		Assert.assertTrue(list.get(0).getHumidity()==31);
 		
 		
 	 }
