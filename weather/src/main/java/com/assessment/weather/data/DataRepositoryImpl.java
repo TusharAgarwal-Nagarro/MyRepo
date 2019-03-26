@@ -15,9 +15,13 @@ public class DataRepositoryImpl implements DataRepository {
 
 	@Override
 	public Result getWeatherHistoryData(String searchText, String date) {
-		
-		String url = "http://api.apixu.com/v1/history.json?key=7ff7c8c3072b44d6a3e80010192503&q="+searchText+"&dt="+date;
-		return restTemplate.getForObject(url,Result.class);
+		try {
+			String url = "http://api.apixu.com/v1/history.json?key=7ff7c8c3072b44d6a3e80010192503&q="+searchText+"&dt="+date;
+			return restTemplate.getForObject(url,Result.class);
+		}
+		catch (Exception e){
+			throw new IllegalArgumentException("The 'searchText' parameter must not be null or empty"+e);
+		}
 	}
 
 }
